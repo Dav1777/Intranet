@@ -12,12 +12,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-@Table("chamados")
+@Table(schema = "chamados")
 public class Chamado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Setor setor;
     private String titulo;
     private String descricao;
     private Status status;
