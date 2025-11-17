@@ -31,4 +31,29 @@ public class Informativo {
     @Column(nullable = false)
     private boolean ativo = true;
 
+    public static void setTitulo(Object titulo) {
+    }
+
+    public static void setConteudo(Object conteudo) {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return "";
+    }
+
+    public String getConteudo() {
+        return "";
+    }
+
+    public LocalDateTime getDataPublicacao() {
+        return null;
+    }
+
+    public boolean isAtivo() {
+        return false;
+    }
 }

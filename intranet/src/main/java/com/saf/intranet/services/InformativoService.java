@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static com.saf.intranet.models.Informativo.*;
+
 @Service
 public class InformativoService {
 
@@ -31,8 +33,8 @@ public class InformativoService {
     //salvar == criar
     public Informativo salvar(InformativoRequestDTO dto) {
         Informativo informativo = new Informativo();
-        informativo.setTitulo(dto.getTitulo());
-        informativo.setConteudo(dto.getConteudo());
+        Informativo.setTitulo(dto.getTitulo());
+        Informativo.setConteudo(dto.getConteudo());
         return informativoRepository.save(informativo);
     }
 
