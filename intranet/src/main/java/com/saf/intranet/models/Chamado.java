@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-@Table(schema = "chamados")
+@Table(name = "chamados", schema = "chamados")
 public class Chamado {
 
     @Id
@@ -25,10 +25,15 @@ public class Chamado {
     private Setor setor;
     private String titulo;
     private String descricao;
+    @Enumerated(EnumType.STRING)
     private Status status;
+    @Enumerated(EnumType.STRING)
     private Prioridade prioridade;
     @Column(name = "data_criacao", updatable = false)
     private LocalDateTime dataCriacao;
-
+    @PrePersist
+    protected void onCreate() {
+        this.dataCriacao = LocalDateTime.now();
+    }
 
 }

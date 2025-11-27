@@ -9,12 +9,12 @@ import lombok.Setter;
 @Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "enderecos")
+//@Table(name = "enderecos")
 @Getter @Setter
 public class Endereco {
 
     private String logradouro;
-    private String numero;
+    private Integer numero;
     private String complemento;
     private String bairro;
     private String cidade;

@@ -1,11 +1,13 @@
 package com.saf.intranet.dtos;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
 
-@Getter @Setter
-public class InformativoRequestDTO {
+public record InformativoRequestDTO(
 
-    private String titulo;
-    private String conteudo;
+        @NotBlank
+        String titulo,
+        @NotBlank
+        String conteudo
+) {
+
 }

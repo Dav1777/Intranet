@@ -5,7 +5,6 @@ import com.saf.intranet.dtos.ChamadoResponseDTO;
 import com.saf.intranet.models.Chamado;
 import com.saf.intranet.repositories.ChamadoRepository;
 import com.saf.intranet.repositories.SetorRepository;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +13,6 @@ import java.util.List;
 public class ChamadoService {
 
     private final ChamadoRepository chamadoRepository;
-
     private final SetorRepository setorRepository;
 
     public ChamadoService(ChamadoRepository chamadoRepository, SetorRepository setorRepository){
@@ -30,46 +28,17 @@ public class ChamadoService {
         return (Chamado) aux.get();
     }
 
-
-    /*puta que pariu como faz isso
-    public Chamado criarChamado(ChamadoRequestDTO dto){
-        Setor setor = setorRepository.findById(dto.getSetorId())
-                .orElseThrow(()->new RuntimeException("Setor não encontrado"));
-
-        Chamado chamado = new Chamado();
-
-        chamado.setTitulo(dto.getTitulo());
-        chamado.setDescricao(dto.getDescricao());
-        chamado.setPrioridade(dto.getPrioridade());
-
-        return chamadoRepository.save(chamado);
-    }*/
-
-    public Object criarChamado(ChamadoRequestDTO chamadoRequestDTO) {
-        Chamado chamado = new Chamado(chamadoRequestDTO.getDescricao(),
-                chamadoRequestDTO.getTitulo(),
-                chamadoRequestDTO.getSetorId(),
-                chamadoRequestDTO.getPrioridade());
-        chamadoRepository.save(chamadoRepository);
-        return new ChamadoResponseDTO();
-    }
-
     public ChamadoResponseDTO toResponseDTO(Chamado chamado){
-        ChamadoResponseDTO dto = new ChamadoResponseDTO();
-
-        dto.setId(chamado.getId());
-        dto.setTitulo(chamado.getTitulo());
-        dto.setDescricao(chamado.getDescricao());
-        dto.setStatus(chamado.getStatus());
-        dto.setPrioridade(chamado.getPrioridade());
-        dto.setDataCriacao(chamado.getDataCriacao());
-
-        if (chamado.getSetor() != null)  {
-            dto.setSetorId(chamado.getSetor().getId());
-            dto.setNomeSetor(chamado.getSetor().getNome());
-        }
-
-        return dto;
+        return new ChamadoResponseDTO(
+                chamado.getId(),
+                chamado.getTitulo(),
+                chamado.getDescricao(),
+                chamado.getStatus(),
+                chamado.getPrioridade(),
+                chamado.getDataCriacao(),
+                chamado.getSetor() != null ? chamado.getSetor().getId() : null,
+                chamado.getSetor() != null ? chamado.getSetor().getNome() : "Não informado"
+        );
     }
 
     public List<ChamadoResponseDTO> listarTodos() {
@@ -78,5 +47,24 @@ public class ChamadoService {
                 .toList();
     }
 
+    public ChamadoResponseDTO buscarChamado(Long id){
+        Chamado chamado = buscarPorId(id);
+        return toResponseDTO(chamado);
+    }
 
+    public ChamadoResponseDTO criarChamado(ChamadoRequestDTO dto) {
+        var setor = setorRepository.findById(dto.idSetor())
+                .orElseThrow(() -> new RuntimeException("Setor não encontrado"));
+
+        Chamado chamado = new Chamado();
+
+        chamado.setTitulo(dto.titulo());
+        chamado.setDescricao(dto.descricao());
+        chamado.setPrioridade(dto.prioridade());
+        chamado.setSetor(setor);
+
+        Chamado chamadoSalvo = chamadoRepository.save(chamado);
+
+        return toResponseDTO(chamadoSalvo);
+    }
 }

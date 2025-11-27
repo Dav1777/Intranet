@@ -2,8 +2,6 @@ package com.saf.intranet.controller;
 
 import com.saf.intranet.dtos.ChamadoRequestDTO;
 import com.saf.intranet.dtos.ChamadoResponseDTO;
-import com.saf.intranet.models.Chamado;
-import com.saf.intranet.repositories.ChamadoRepository;
 import com.saf.intranet.services.ChamadoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -23,8 +21,8 @@ public class ChamadoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Chamado criarChamado(@RequestBody @Valid ChamadoRequestDTO dto){
-        return (Chamado) chamadoService.criarChamado(dto);
+    public ChamadoResponseDTO criarChamado(@RequestBody @Valid ChamadoRequestDTO dto){
+        return chamadoService.criarChamado(dto);
     }
 
     @GetMapping("/{id}")

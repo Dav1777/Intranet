@@ -9,22 +9,30 @@ import lombok.Setter;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter @Setter
+@Getter
+@Setter
 public class Funcionario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String matricula;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String nome;
     private String email;
+
+    @Column(unique = true)
     private String cpf;
+
     private String cargo;
+
+    @ManyToOne
+    @JoinColumn(name = "setor_id")
     private Setor setor;
+
     private String senha;
+
     @Embedded
     private Endereco endereco;
-    private Long telefone;
 
-
-
+    private String telefone;
 }

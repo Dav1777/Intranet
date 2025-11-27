@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface ChamadoRepository extends JpaRepository<ChamadoRepository, Long> {
+public interface ChamadoRepository extends JpaRepository<Chamado, Long> {
 
     List<Chamado> findByStatus(Status status);
 
