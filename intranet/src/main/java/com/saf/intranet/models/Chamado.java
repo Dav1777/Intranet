@@ -20,7 +20,9 @@ public class Chamado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JoinColumn(name = "funcionario_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "funcionario_id")
+    private Funcionario funcionario;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "setor_id")
     private Setor setor;

@@ -18,4 +18,5 @@ public class Setor {
     private Long id;
     private String nome;
 
+
 }
