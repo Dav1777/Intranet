@@ -23,8 +23,8 @@ public class Conteudo {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chamado_id", nullable = false)
     private Chamado chamado;
-    @Column(name = "autorMatricula")
-    private String autorMatricula;
+    @Column(name = "autorId")
+    private String autorId;
     @Column(name = "data_criacao", updatable = false)
     private LocalDateTime dataCriacao;
     @Column(name = "caminho_arquivo")

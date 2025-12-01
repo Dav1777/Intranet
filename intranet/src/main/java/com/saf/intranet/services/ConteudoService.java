@@ -56,7 +56,7 @@ public class ConteudoService {
         conteudo.setTexto(dto.getTexto());
         conteudo.setCaminhoArquivo(caminhoDoArquivo);
 
-        conteudo.setAutorMatricula(dto.getAutorMatricula());
+        conteudo.setAutorId(dto.getAutorMatricula());
 
         return conteudoRepository.save(conteudo);
     }

@@ -18,7 +18,7 @@ public record ConteudoResponseDTO(
                 conteudo.getId(),
                 conteudo.getTexto(),
                 conteudo.getChamado().getId(),
-                conteudo.getAutorMatricula(),
+                conteudo.getAutorId(),
                 conteudo.getCaminhoArquivo(),
                 conteudo.getDataCriacao()
         );
