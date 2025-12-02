@@ -1,5 +1,7 @@
 package com.saf.intranet.dtos;
 
+import com.saf.intranet.models.Endereco;
+
 public record FuncionarioRequestDTO(
         String nome,
         String email,
@@ -8,5 +10,12 @@ public record FuncionarioRequestDTO(
         Long idSetor,
         String senha,
         String telefone,
-        EnderecoRequestDTO endereco
+
+        String logradouro,
+        Integer numero,
+        String complemento,
+        String bairro,
+        String cidade,
+        String estado,
+        String cep
 ) {}

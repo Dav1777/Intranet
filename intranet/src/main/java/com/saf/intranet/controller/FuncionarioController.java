@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/funcionarios")
 public class FuncionarioController {
 
     private final FuncionarioService funcionarioService;

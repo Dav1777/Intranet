@@ -2,10 +2,9 @@ package com.saf.intranet.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record InformativoRequestDTO(
-
+public record SetorRequestDTO(
         @NotBlank
-        String titulo,
+        Long id,
         @NotBlank
-        String conteudo
-) {}
+        String nome
+) { }

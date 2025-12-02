@@ -42,7 +42,7 @@ public class InformativoService {
     public Optional<Informativo> buscarPorId(Long id) {
         return informativoRepository.findById(id);
     }
-    //salvar == criar
+
     public Informativo salvar(InformativoRequestDTO dto) {
         Informativo informativo = new Informativo();
 

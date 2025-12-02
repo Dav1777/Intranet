@@ -31,7 +31,7 @@ public class InformativoController {
         InformativoResponseDTO responseDTO = new InformativoResponseDTO(salvo);
         return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
     }
-    //esse aqui tambem nao tem o ("/")
+
     @GetMapping
     public ResponseEntity<List<InformativoResponseDTO>> listarTodosInformativos(){
         List<InformativoResponseDTO> informativos = informativoService.listarTodos();

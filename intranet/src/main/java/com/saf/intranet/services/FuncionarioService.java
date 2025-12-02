@@ -1,6 +1,5 @@
 package com.saf.intranet.services;
 
-import com.saf.intranet.dtos.EnderecoRequestDTO;
 import com.saf.intranet.dtos.FuncionarioRequestDTO;
 import com.saf.intranet.dtos.FuncionarioResponseDTO;
 import com.saf.intranet.models.Endereco;
@@ -26,30 +25,30 @@ public class FuncionarioService {
         Setor setor = setorRepository.findById(dto.idSetor())
                 .orElseThrow(() -> new RuntimeException("Setor não encontrado."));
 
-        EnderecoRequestDTO e = dto.endereco();
-        Endereco endereco = new Endereco(
-                e.logradouro(),
-                e.numero(),
-                e.complemento(),
-                e.bairro(),
-                e.cidade(),
-                e.estado(),
-                e.cep()
-        );
+        Endereco endereco = new Endereco();
 
-        Funcionario f = new Funcionario();
-        f.setNome(dto.nome());
-        f.setEmail(dto.email());
-        f.setCpf(dto.cpf());
-        f.setCargo(dto.cargo());
-        f.setSenha(dto.senha());
-        f.setTelefone(dto.telefone());
-        f.setSetor(setor);
-        f.setEndereco(endereco);
+        endereco.setLogradouro(dto.logradouro());
+        endereco.setNumero(dto.numero());
+        endereco.setComplemento(dto.complemento());
+        endereco.setBairro(dto.bairro());
+        endereco.setCidade(dto.cidade());
+        endereco.setEstado(dto.estado());
+        endereco.setCep(dto.cep());
 
-        Funcionario salvo = funcionarioRepository.save(f);
+        Funcionario funcionario = new Funcionario();
+        funcionario.setNome(dto.nome());
+        funcionario.setEmail(dto.email());
+        funcionario.setCpf(dto.cpf());
+        funcionario.setCargo(dto.cargo());
+        funcionario.setTelefone(dto.telefone());
+        funcionario.setSenha(dto.senha());
 
-        return new FuncionarioResponseDTO(salvo);
+        funcionario.setSetor(setor);
+        funcionario.setEndereco(endereco);
+
+        Funcionario funcionarioSalvo = funcionarioRepository.save(funcionario);
+
+        return new FuncionarioResponseDTO(funcionarioSalvo);
     }
 
     public FuncionarioResponseDTO findById(Long id) {
