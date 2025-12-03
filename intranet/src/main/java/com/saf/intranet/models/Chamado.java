@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -43,9 +44,12 @@ public class Chamado {
     @Column(name = "data_criacao", updatable = false)
     private LocalDateTime dataCriacao;
 
-    @Column
+    /*@Column
     @OneToMany(mappedBy = "chamado")
-    private List <Conteudo> conteudos;
+    private List <Conteudo> conteudos;*/
+
+    @OneToMany(mappedBy = "chamado", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Conteudo> conteudos = new ArrayList<>();
 
     @PrePersist
     protected void onCreate() {

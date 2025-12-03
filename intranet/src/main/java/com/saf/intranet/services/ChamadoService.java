@@ -85,12 +85,21 @@ public class ChamadoService {
         return toResponseDTO(chamadoSalvo);
     }
 
-    public Chamado atualizarChamado(ConteudoRequestDTO conteudoRequestDTO){
-        var chamado = chamadoRepository.findById(conteudoRequestDTO.getIdChamado()).orElseThrow();
+    public ChamadoResponseDTO atualizarChamado(Long idChamado, ConteudoRequestDTO dto){
+        var chamado = chamadoRepository.findById(idChamado)
+                .orElseThrow(() -> new RuntimeException("Chamaodo não encontrado"));
+
+        var autor = funcionarioRepository.findById(dto.getAutorId())
+                .orElseThrow(() -> new RuntimeException("Autor não encontrado"));
+
         var conteudo = new Conteudo();
-        chamado.getConteudos().add(conteudo);
+        conteudo.setTexto(dto.getTexto());
+        conteudo.setAutor(autor);
+        conteudo.setChamado(chamado);
+
+        conteudoRepository.save(conteudo);
 
 
-        return chamadoRepository.save(chamado);
+        return toResponseDTO(chamado);
     }
 }
