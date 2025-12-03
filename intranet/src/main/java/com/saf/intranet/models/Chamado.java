@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -20,20 +21,32 @@ public class Chamado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "setor_id")
     private Setor setor;
+
     private String titulo;
+
     private String descricao;
+
     @Enumerated(EnumType.STRING)
     private Status status;
+
     @Enumerated(EnumType.STRING)
     private Prioridade prioridade;
+
     @Column(name = "data_criacao", updatable = false)
     private LocalDateTime dataCriacao;
+
+    @Column
+    @OneToMany(mappedBy = "chamado")
+    private List <Conteudo> conteudos;
+
     @PrePersist
     protected void onCreate() {
         this.dataCriacao = LocalDateTime.now();

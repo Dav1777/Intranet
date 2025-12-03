@@ -9,7 +9,7 @@ public record ConteudoResponseDTO(
         Long id,
         String texto,
         Long idChamado,
-        String autorMatricula,
+        String nomeAutor,
         String caminhoArquivo,
         LocalDateTime dataCriacao
 ) {
@@ -18,7 +18,7 @@ public record ConteudoResponseDTO(
                 conteudo.getId(),
                 conteudo.getTexto(),
                 conteudo.getChamado().getId(),
-                conteudo.getAutorId(),
+                conteudo.getAutor().getNome(),
                 conteudo.getCaminhoArquivo(),
                 conteudo.getDataCriacao()
         );

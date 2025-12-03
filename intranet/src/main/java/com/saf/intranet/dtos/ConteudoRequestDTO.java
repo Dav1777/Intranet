@@ -16,7 +16,7 @@ public class ConteudoRequestDTO {
     @NotNull
     private Long idChamado;
 
-    private String autorMatricula;
+    private Long autorId;
 
     private MultipartFile arquivo;
 }

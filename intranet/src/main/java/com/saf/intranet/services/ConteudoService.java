@@ -5,6 +5,7 @@ import com.saf.intranet.models.Chamado;
 import com.saf.intranet.models.Conteudo;
 import com.saf.intranet.repositories.ChamadoRepository;
 import com.saf.intranet.repositories.ConteudoRepository;
+import com.saf.intranet.repositories.FuncionarioRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class ConteudoService {
 
     private final ConteudoRepository conteudoRepository;
     private final ChamadoRepository chamadoRepository;
+    private final FuncionarioRepository funcionarioRepository;
 
     private static final String UPLOAD_DIR = "upload/prints/";
 
@@ -55,8 +57,9 @@ public class ConteudoService {
         conteudo.setChamado(chamado);
         conteudo.setTexto(dto.getTexto());
         conteudo.setCaminhoArquivo(caminhoDoArquivo);
-
-        conteudo.setAutorId(dto.getAutorMatricula());
+        
+        var autor = funcionarioRepository.findById(dto.getAutorId()).orElseThrow();
+        conteudo.setAutor(autor);
 
         return conteudoRepository.save(conteudo);
     }

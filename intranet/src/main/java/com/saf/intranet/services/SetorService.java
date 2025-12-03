@@ -30,7 +30,7 @@ public class SetorService {
     public Setor salvar(SetorRequestDTO dto) {
         Setor setor = new Setor();
 
-        setor.setId(dto.id());
+        //setor.setId(dto.id());
         setor.setNome(dto.nome());
 
         return setorRepository.save(setor);
