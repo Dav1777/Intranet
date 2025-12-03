@@ -42,4 +42,9 @@ public class ConteudoController {
 
         return ResponseEntity.ok(dtos);
     }
+
+    @GetMapping
+    public List<Conteudo> listarTodos() {
+        return conteudoService.listarTodos();
+    }
 }
