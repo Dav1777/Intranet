@@ -10,6 +10,7 @@ import com.saf.intranet.repositories.SetorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +19,7 @@ public class FuncionarioService {
 
     private final FuncionarioRepository funcionarioRepository;
     private final SetorRepository setorRepository;
+    private final PasswordEncoder passwordEncoder;
 
     // SAVE
     public FuncionarioResponseDTO save(FuncionarioRequestDTO dto) {
@@ -41,7 +43,9 @@ public class FuncionarioService {
         funcionario.setCpf(dto.cpf());
         funcionario.setCargo(dto.cargo());
         funcionario.setTelefone(dto.telefone());
-        funcionario.setSenha(dto.senha());
+        //funcionario.setSenha(dto.senha());
+        String senhaCriptografada = passwordEncoder.encode(dto.senha());
+        funcionario.setSenha(senhaCriptografada);
 
         funcionario.setSetor(setor);
         funcionario.setEndereco(endereco);

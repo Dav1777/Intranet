@@ -29,6 +29,7 @@ public class Funcionario {
     @JoinColumn(name = "setor_id")
     private Setor setor;
 
+    @Column(nullable = false, length = 255)
     private String senha;
 
     @Embedded
