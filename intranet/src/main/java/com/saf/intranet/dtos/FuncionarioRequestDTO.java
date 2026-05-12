@@ -10,6 +10,7 @@ public record FuncionarioRequestDTO(
         Long idSetor,
         String senha,
         String telefone,
+        String matricula,
 
         String logradouro,
         Integer numero,

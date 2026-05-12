@@ -25,7 +25,7 @@ public record FuncionarioResponseDTO(
                 f.getTelefone(),
                 f.getSetor(),
                 f.getEndereco(),
-                f.getMatricula
+                f.getMatricula()
         );
     }
 }
