@@ -12,7 +12,8 @@ public record FuncionarioResponseDTO(
         String cargo,
         String telefone,
         Setor setor,
-        Endereco endereco
+        Endereco endereco,
+        String matricula
 ) {
     public FuncionarioResponseDTO(Funcionario f) {
         this(
@@ -23,7 +24,8 @@ public record FuncionarioResponseDTO(
                 f.getCargo(),
                 f.getTelefone(),
                 f.getSetor(),
-                f.getEndereco()
+                f.getEndereco(),
+                f.getMatricula
         );
     }
 }

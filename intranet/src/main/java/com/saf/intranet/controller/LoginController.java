@@ -29,7 +29,7 @@ public class LoginController {
     public ResponseEntity<FuncionarioResponseDTO> login(@RequestBody LoginRequestDTO dto, HttpServletResponse response){
         FuncionarioResponseDTO funcionario = loginService.logar(dto);
 
-        cookieService.setCookie(response, "usuario_logado", funcionario.email(), 60 * 60);
+        cookieService.setCookie(response, "usuario_logado", funcionario.matricula(), 60 * 60);
 
         return ResponseEntity.ok(funcionario);
     }

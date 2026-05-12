@@ -36,4 +36,7 @@ public class Funcionario {
     private Endereco endereco;
 
     private String telefone;
+
+    @Column(unique = true)
+    private String matricula;
 }
