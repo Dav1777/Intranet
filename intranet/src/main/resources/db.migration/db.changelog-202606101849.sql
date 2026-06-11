@@ -1,0 +1,3 @@
+--liquibase formatted sql
+--changeset vinicius:202606101846
+--comment: setores table create
